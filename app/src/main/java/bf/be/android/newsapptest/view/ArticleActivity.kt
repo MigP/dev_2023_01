@@ -22,6 +22,8 @@ class ArticleActivity : AppCompatActivity() {
 
         //TODO ----------------------------- Gets data from intent
         val item_title = intent.getStringExtra("TITLE")
+        val item_date = intent.getStringExtra("DATE")
+        val item_page = intent.getStringExtra("PAGE")
         val item_place_of_publication = intent.getStringExtra("PLACE_OF_PUBLICATION")
         val item_language = intent.getStringArrayExtra("LANGUAGE")
         val item_note = intent.getStringArrayExtra("NOTE")
@@ -33,7 +35,7 @@ class ArticleActivity : AppCompatActivity() {
         val item_url = intent.getStringExtra("URL")
         val item_ocr_eng = intent.getStringExtra("OCR_ENG")
         //TODO ------------------------------------------
-        //TODO Also get title.name (title), date_issued (publication date), sequence (page), pdf (original scan) from json response on the item_url request
+        //TODO Also get pdf (original scan) from json response on the item_url request
 
         println("-------------- title: " + item_title)
         println("-------------- item_place_of_publication: " + item_place_of_publication)

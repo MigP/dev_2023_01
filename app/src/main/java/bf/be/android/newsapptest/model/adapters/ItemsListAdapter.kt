@@ -41,11 +41,13 @@ class ItemsListAdapter(val itemsList: ArrayList<Items>, val passedContext: Conte
             itemView.setOnClickListener {
                 val articleDetailsIntent = Intent(itemView.context, ArticleActivity::class.java)
                 articleDetailsIntent.putExtra("TITLE", itemsList[adapterPosition].title)
+                articleDetailsIntent.putExtra("DATE", formatDate(itemsList[adapterPosition].date.toString()))
                 articleDetailsIntent.putExtra("PLACE_OF_PUBLICATION", itemsList[adapterPosition].placeOfPublication)
                 articleDetailsIntent.putExtra("LANGUAGE", itemsList[adapterPosition].language)
                 articleDetailsIntent.putExtra("NOTE", itemsList[adapterPosition].note)
                 articleDetailsIntent.putExtra("SUBJECT", itemsList[adapterPosition].subject)
                 articleDetailsIntent.putExtra("FREQUENCY", itemsList[adapterPosition].frequency)
+                articleDetailsIntent.putExtra("PAGE", itemsList[adapterPosition].page)
                 articleDetailsIntent.putExtra("TYPE", itemsList[adapterPosition].type)
                 articleDetailsIntent.putExtra("EDITION_LABEL", itemsList[adapterPosition].editionLabel)
                 articleDetailsIntent.putExtra("PUBLISHER", itemsList[adapterPosition].publisher)
