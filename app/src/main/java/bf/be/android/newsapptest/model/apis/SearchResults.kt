@@ -1,6 +1,7 @@
 package bf.be.android.newsapptest.model.apis
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 class SearchResults {
     @SerializedName("totalItems") var totalItems: Int? = null
