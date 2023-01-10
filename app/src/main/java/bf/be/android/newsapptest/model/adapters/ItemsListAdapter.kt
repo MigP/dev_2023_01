@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import bf.be.android.newsapptest.R
 import bf.be.android.newsapptest.model.apis.Items
+import bf.be.android.newsapptest.view.ArticleActivity
 
 class ItemsListAdapter(val itemsList: ArrayList<Items>, val passedContext: Context): RecyclerView.Adapter<ItemsListAdapter.ViewHolder>() {
 
@@ -38,12 +39,19 @@ class ItemsListAdapter(val itemsList: ArrayList<Items>, val passedContext: Conte
             publicationLocation = itemView.findViewById(R.id.publication_location)
 
             itemView.setOnClickListener {
-//                // Displays the detailed view of this list
-//                val createListIntent = Intent(itemView.context, MainActivity::class.java)
-//                createListIntent.putExtra("targetFragment", "create")
-//                createListIntent.putExtra("fragmentMode", "listViewing")
-//                createListIntent.putExtra("listId", listsArray[adapterPosition].getListId().toString()) // Adds the id of the list just clicked and passes it on to the create fragment
-//                itemView.context.startActivity(createListIntent)
+                val articleDetailsIntent = Intent(itemView.context, ArticleActivity::class.java)
+                articleDetailsIntent.putExtra("TITLE", itemsList[adapterPosition].title)
+                articleDetailsIntent.putExtra("PLACE_OF_PUBLICATION", itemsList[adapterPosition].placeOfPublication)
+                articleDetailsIntent.putExtra("LANGUAGE", itemsList[adapterPosition].language)
+                articleDetailsIntent.putExtra("NOTE", itemsList[adapterPosition].note)
+                articleDetailsIntent.putExtra("SUBJECT", itemsList[adapterPosition].subject)
+                articleDetailsIntent.putExtra("FREQUENCY", itemsList[adapterPosition].frequency)
+                articleDetailsIntent.putExtra("TYPE", itemsList[adapterPosition].type)
+                articleDetailsIntent.putExtra("EDITION_LABEL", itemsList[adapterPosition].editionLabel)
+                articleDetailsIntent.putExtra("PUBLISHER", itemsList[adapterPosition].publisher)
+                articleDetailsIntent.putExtra("URL", itemsList[adapterPosition].url)
+                articleDetailsIntent.putExtra("OCR_ENG", itemsList[adapterPosition].ocrEng)
+                itemView.context.startActivity(articleDetailsIntent)
             }
         }
     }

@@ -68,8 +68,6 @@ class NewsListActivity : AppCompatActivity(), CheckNetwork {
 
     private fun createRecyclerview (items: ArrayList<Items>) {
         if (lastPage > 0) {
-            println("------------------ item1 title: " + items[0].title) //TODO Create recyclerview
-
             var itemsListAdapterLayoutManager: RecyclerView.LayoutManager? = null
             var itemsListAdapter: RecyclerView.Adapter<ItemsListAdapter.ViewHolder>? = null
             itemsListAdapterLayoutManager = LinearLayoutManager(this)
@@ -81,28 +79,6 @@ class NewsListActivity : AppCompatActivity(), CheckNetwork {
         } else {
             displayEmptyList("empty")
         }
-
-        //TODO ------------------------ This happens on item click
-        val nextBtn: Button = binding.nextButton //TODO remove
-        nextBtn.setOnClickListener { //TODO remove
-            val intent = Intent(this, ArticleActivity::class.java)
-            intent.putExtra("TITLE", items[0].title)
-            intent.putExtra("PLACE_OF_PUBLICATION", items[0].placeOfPublication)
-            intent.putExtra("LANGUAGE", items[0].language)
-            intent.putExtra("NOTE", items[0].note)
-            intent.putExtra("SUBJECT", items[0].subject)
-            intent.putExtra("FREQUENCY", items[0].frequency)
-            intent.putExtra("TYPE", items[0].type)
-            intent.putExtra("EDITION_LABEL", items[0].editionLabel)
-            intent.putExtra("PUBLISHER", items[0].publisher)
-            intent.putExtra("URL", items[0].url)
-            intent.putExtra("OCR_ENG", items[0].ocrEng)
-            startActivity(intent)
-        } //TODO remove
-        //TODO ------------------------------------------------
-
-
-
     }
 
     private fun displayEmptyList (message: String) {

@@ -28,5 +28,10 @@ class ArticleActivity : AppCompatActivity() {
         val item_ocr_eng = intent.getStringExtra("OCR_ENG")
         //TODO ------------------------------------------
         //TODO Also get title.name (title), date_issued (publication date), sequence (page), pdf (original scan) from json response on the item_url request
+
+        println("-------------- title: " + item_title)
+        println("-------------- item_place_of_publication: " + item_place_of_publication)
+        println("-------------- item_frequency: " + item_frequency)
+        println("-------------- item_publisher: " + item_publisher)
     }
 }

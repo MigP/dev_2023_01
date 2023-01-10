@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/listCardView"
     android:layout_margin="5dp"
-    app:cardBackgroundColor="#E3F7FF"
+    app:cardBackgroundColor="#E3FFE4"
     app:cardCornerRadius="12dp"
     app:cardElevation="3dp"
     app:contentPadding="5dp">
