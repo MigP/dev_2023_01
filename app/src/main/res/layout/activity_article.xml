@@ -6,146 +6,276 @@
     android:layout_height="match_parent"
     tools:context=".view.ArticleActivity">
 
-    <TextView
-        android:id="@+id/itemTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="29dp"
-        android:layout_marginTop="48dp"
-        android:text="Title: "
-        app:layout_constraintBottom_toTopOf="@+id/itemDate"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/itemDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="1dp"
-        android:text="Date of publication: "
-        app:layout_constraintBottom_toTopOf="@+id/itemPlace"
-        app:layout_constraintStart_toStartOf="@+id/itemTitle"
-        app:layout_constraintTop_toBottomOf="@+id/itemTitle" />
-
-    <TextView
-        android:id="@+id/itemPlace"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="1dp"
-        android:text="Place of publication: "
-        app:layout_constraintBottom_toTopOf="@+id/itemSubject"
-        app:layout_constraintStart_toStartOf="@+id/itemDate"
-        app:layout_constraintTop_toBottomOf="@+id/itemDate" />
-
-    <TextView
-        android:id="@+id/itemSubject"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="1dp"
-        android:text="Subject: "
-        app:layout_constraintBottom_toTopOf="@+id/itemLanguage"
-        app:layout_constraintStart_toStartOf="@+id/itemPlace"
-        app:layout_constraintTop_toBottomOf="@+id/itemPlace" />
-
-    <TextView
-        android:id="@+id/itemLanguage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="1dp"
-        android:text="Language: "
-        app:layout_constraintBottom_toTopOf="@+id/itemType"
-        app:layout_constraintStart_toStartOf="@+id/itemSubject"
-        app:layout_constraintTop_toBottomOf="@+id/itemSubject" />
-
-
-    <TextView
-        android:id="@+id/itemOcr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="OCR English: "
-        app:layout_constraintBottom_toTopOf="@+id/view2"
-        app:layout_constraintStart_toStartOf="@+id/itemNotes"
-        app:layout_constraintTop_toBottomOf="@+id/itemNotes" />
-
-    <TextView
-        android:id="@+id/itemType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="1dp"
-        android:text="Type: "
-        app:layout_constraintBottom_toTopOf="@+id/itemPage"
-        app:layout_constraintStart_toStartOf="@+id/itemLanguage"
-        app:layout_constraintTop_toBottomOf="@+id/itemLanguage" />
-
-    <TextView
-        android:id="@+id/itemPage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Page: "
-        app:layout_constraintBottom_toTopOf="@+id/itemFrequency"
-        app:layout_constraintStart_toStartOf="@+id/itemType"
-        app:layout_constraintTop_toBottomOf="@+id/itemType" />
-
-    <TextView
-        android:id="@+id/itemFrequency"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
-        android:text="Frequency: "
-        app:layout_constraintBottom_toTopOf="@+id/itemLabel"
-        app:layout_constraintStart_toStartOf="@+id/itemPage"
-        app:layout_constraintTop_toBottomOf="@+id/itemPage" />
-
-    <TextView
-        android:id="@+id/itemLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Edition label: "
-        app:layout_constraintBottom_toTopOf="@+id/itemPublisher"
-        app:layout_constraintStart_toStartOf="@+id/itemFrequency"
-        app:layout_constraintTop_toBottomOf="@+id/itemFrequency" />
-
-    <TextView
-        android:id="@+id/itemPublisher"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
-        android:text="Publisher: "
-        app:layout_constraintBottom_toTopOf="@+id/itemNotes"
-        app:layout_constraintStart_toStartOf="@+id/itemLabel"
-        app:layout_constraintTop_toBottomOf="@+id/itemLabel" />
-
-    <TextView
-        android:id="@+id/itemNotes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Notes: "
-        app:layout_constraintBottom_toTopOf="@+id/itemOcr"
-        app:layout_constraintStart_toStartOf="@+id/itemPublisher"
-        app:layout_constraintTop_toBottomOf="@+id/itemPublisher" />
-
-    <View
-        android:id="@+id/view2"
-        android:layout_width="match_parent"
+    <ScrollView
+        android:id="@+id/detailsScroll"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="336dp"
-        android:layout_weight="1"
+        android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/backFloatingActionButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemOcr" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck">
 
-    <TextView
-        android:id="@+id/itemPdfLink"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="29dp"
-        android:text="View a scan of the original ►"
-        android:textColor="#4CAF50"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/view2"
-        app:layout_constraintTop_toBottomOf="@+id/view2" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingVertical="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Title: "
+                    android:textColor="#8BC34A" />
+
+                <TextView
+                    android:id="@+id/itemTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="text" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date of publication: "
+                    android:textColor="#8BC34A" />
+
+                <TextView
+                    android:id="@+id/itemDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="text" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:id="@+id/place"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Location: "
+                    android:textColor="#8BC34A" />
+
+                <TextView
+                    android:id="@+id/itemPlace"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="text" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:id="@+id/subject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Subject: "
+                    android:textColor="#8BC34A" />
+
+                <TextView
+                    android:id="@+id/itemSubject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="text" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:id="@+id/language"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Language: "
+                    android:textColor="#8BC34A" />
+
+                <TextView
+                    android:id="@+id/itemLanguage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="text" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:id="@+id/type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Type: "
+                    android:textColor="#8BC34A" />
+
+                <TextView
+                    android:id="@+id/itemType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="text" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:id="@+id/page"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Page: "
+                    android:textColor="#8BC34A" />
+
+                <TextView
+                    android:id="@+id/itemPage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="text" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:id="@+id/frequency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Frequency: "
+                    android:textColor="#8BC34A" />
+
+                <TextView
+                    android:id="@+id/itemFrequency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="text" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:id="@+id/label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Edition label: "
+                    android:textColor="#8BC34A" />
+
+                <TextView
+                    android:id="@+id/itemLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="text" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:id="@+id/publisher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Publisher: "
+                    android:textColor="#8BC34A" />
+
+                <TextView
+                    android:id="@+id/itemPublisher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="text" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:id="@+id/notes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Notes: "
+                    android:textColor="#8BC34A" />
+
+                <TextView
+                    android:id="@+id/itemNotes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="text" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:id="@+id/ocr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="English OCR: "
+                    android:textColor="#8BC34A" />
+
+                <TextView
+                    android:id="@+id/itemOcr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="text" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/itemPdfLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View a scan of the original ►"
+                android:textColor="#4CAF50"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/itemOcr"
+                app:layout_constraintTop_toBottomOf="@+id/itemOcr" />
+
+        </LinearLayout>
+    </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/backFloatingActionButton"
@@ -154,10 +284,11 @@
         android:layout_marginStart="35dp"
         android:layout_marginBottom="29dp"
         android:clickable="true"
+        android:contentDescription="Back button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2"
-        app:srcCompat="@drawable/back" />
+        app:srcCompat="@drawable/back"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
