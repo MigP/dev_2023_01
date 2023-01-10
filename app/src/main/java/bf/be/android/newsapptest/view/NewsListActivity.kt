@@ -37,8 +37,6 @@ class NewsListActivity : AppCompatActivity(), CheckNetwork {
         val searchButton: ImageButton = binding.searchButton
 
         searchButton.setOnClickListener {
-            //TODO Clear results list
-            //TODO Results list must have a header containing the searched terms
             //TODO Handle navigation buttons state depending on current page and total pages
             val searchTxt: String = binding.searchEdit.text.toString()
             searchNews(searchTxt, currentPage)
@@ -70,25 +68,26 @@ class NewsListActivity : AppCompatActivity(), CheckNetwork {
     }
 
     private fun createRecyclerview (items: ArrayList<Items>) {
-        if (lastPage > 0) {
-            var itemsListAdapterLayoutManager: RecyclerView.LayoutManager? = null
-            var itemsListAdapter: RecyclerView.Adapter<ItemsListAdapter.ViewHolder>? = null
-            itemsListAdapterLayoutManager = LinearLayoutManager(this)
-            val recyclerView = binding.newsList
-            recyclerView.layoutManager = itemsListAdapterLayoutManager
-            itemsListAdapter = ItemsListAdapter(items, this)
-            recyclerView.adapter = itemsListAdapter
+        var itemsListAdapterLayoutManager: RecyclerView.LayoutManager? = null
+        var itemsListAdapter: RecyclerView.Adapter<ItemsListAdapter.ViewHolder>? = null
+        itemsListAdapterLayoutManager = LinearLayoutManager(this)
+        val recyclerView = binding.newsList
+        recyclerView.layoutManager = itemsListAdapterLayoutManager
+        itemsListAdapter = ItemsListAdapter(items, this)
+        recyclerView.adapter = itemsListAdapter
 
-        } else {
+        if (lastPage == 0) {
             displayEmptyList("empty")
+        } else {
+            binding.searchHeader.text = "Search results for: \"" + binding.searchEdit.text + "\""
         }
     }
 
     private fun displayEmptyList (message: String) {
         if (message.equals("error")) {
-            if (isOnline(this)) println("An error has occurred") else println("There is no Internet connection")
+            if (isOnline(this)) binding.searchHeader.text = "An error has occurred" else binding.searchHeader.text = "There is no Internet connection"
         } else if (message.equals("empty")) {
-            println("There are no results for this search") //TODO Display error on list
+            binding.searchHeader.text = "There are no results for: \"" + binding.searchEdit.text + "\""
         }
     }
 }
