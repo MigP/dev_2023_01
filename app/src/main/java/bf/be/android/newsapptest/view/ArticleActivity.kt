@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import bf.be.android.newsapptest.databinding.ActivityArticleBinding
 import bf.be.android.newsapptest.model.apis.Items
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ArticleActivity : AppCompatActivity() {
     private lateinit var binding: ActivityArticleBinding
@@ -13,6 +14,11 @@ class ArticleActivity : AppCompatActivity() {
         binding = ActivityArticleBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setTitle("My News")
+
+        val backButton: FloatingActionButton = binding.backFloatingActionButton
+        backButton.setOnClickListener {
+            finish()
+        }
 
         //TODO ----------------------------- Gets data from intent
         val item_title = intent.getStringExtra("TITLE")

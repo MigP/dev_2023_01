@@ -37,6 +37,9 @@ class NewsListActivity : AppCompatActivity(), CheckNetwork {
         val searchButton: ImageButton = binding.searchButton
 
         searchButton.setOnClickListener {
+            //TODO Clear results list
+            //TODO Results list must have a header containing the searched terms
+            //TODO Handle navigation buttons state depending on current page and total pages
             val searchTxt: String = binding.searchEdit.text.toString()
             searchNews(searchTxt, currentPage)
         }
