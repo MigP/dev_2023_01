@@ -8,7 +8,7 @@ import android.widget.ImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bf.be.android.newsapptest.databinding.ActivityNewsListBinding
-import bf.be.android.newsapptest.model.CheckNetwork
+import bf.be.android.newsapptest.CheckNetwork
 import bf.be.android.newsapptest.model.adapters.ItemsListAdapter
 import bf.be.android.newsapptest.model.apis.ApiSearch
 import bf.be.android.newsapptest.model.apis.Items

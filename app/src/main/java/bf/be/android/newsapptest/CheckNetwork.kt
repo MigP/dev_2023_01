@@ -1,4 +1,4 @@
-package bf.be.android.newsapptest.model
+package bf.be.android.newsapptest
 
 import android.content.Context
 import android.net.ConnectivityManager

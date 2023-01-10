@@ -23,12 +23,12 @@ class ItemsListAdapter(val itemsList: ArrayList<Items>, val passedContext: Conte
 
     override fun onBindViewHolder(holder: ItemsListAdapter.ViewHolder, position: Int) {
         holder.articleTitle.text = itemsList[position].title
-        holder.articleDate.text = itemsList[position].date
+        holder.articleDate.text = formatDate(itemsList[position].date.toString())
         holder.publicationLocation.text = itemsList[position].placeOfPublication
     }
 
     inner class ViewHolder(itemView: View, passedContext: Context): RecyclerView.ViewHolder(itemView) {
-        var articleTitle: TextView //TODO format date correctly
+        var articleTitle: TextView
         var articleDate: TextView
         var publicationLocation: TextView
 
@@ -46,5 +46,9 @@ class ItemsListAdapter(val itemsList: ArrayList<Items>, val passedContext: Conte
 //                itemView.context.startActivity(createListIntent)
             }
         }
+    }
+
+    private fun formatDate(date: String): String {
+        return date.slice(6..7) + "/" + date.slice(4..5) + "/" + date.slice(0..3)
     }
 }
