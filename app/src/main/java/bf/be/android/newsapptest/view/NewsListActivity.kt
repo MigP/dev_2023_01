@@ -5,14 +5,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bf.be.android.newsapptest.databinding.ActivityNewsListBinding
 import bf.be.android.newsapptest.CheckNetwork
+import bf.be.android.newsapptest.R
 import bf.be.android.newsapptest.model.adapters.ItemsListAdapter
 import bf.be.android.newsapptest.model.apis.ApiSearch
 import bf.be.android.newsapptest.model.apis.Items
 import bf.be.android.newsapptest.model.apis.SearchResults
+import com.bumptech.glide.Glide
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,6 +29,7 @@ class NewsListActivity : AppCompatActivity(), CheckNetwork {
     companion object {
         var itemsList: ArrayList<Items> = arrayListOf()
         var itemsListAdapter: RecyclerView.Adapter<ItemsListAdapter.ViewHolder>? = null
+        var searchTxt: String = ""
         var currentPage: Int = 1
         var lastPage: Int = 0
     }
@@ -44,15 +48,34 @@ class NewsListActivity : AppCompatActivity(), CheckNetwork {
         itemsListAdapter = ItemsListAdapter(itemsList, this)
         recyclerView.adapter = itemsListAdapter
 
+        Glide.with(this).load(R.drawable.waiting).into(binding.waitingPlaceholder)
+
+        // Displays initial list
+        searchNews("", currentPage)
+
         val searchButton: ImageButton = binding.searchButton
         searchButton.setOnClickListener {
-            //TODO Handle navigation buttons state depending on current page and total pages
-            val searchTxt: String = binding.searchEdit.text.toString()
+            searchTxt = binding.searchEdit.text.toString()
+            currentPage = 1
+            searchNews(searchTxt, currentPage)
+        }
+
+        val nextButton: Button = binding.nextButton
+        nextButton.setOnClickListener {
+            currentPage++
+            searchNews(searchTxt, currentPage)
+        }
+
+        val previousButton: Button = binding.previousButton
+        previousButton.setOnClickListener {
+            currentPage--
             searchNews(searchTxt, currentPage)
         }
     }
 
     private fun searchNews (searchTxt: String, currentPage: Int) {
+        binding.waitingPlaceholder.isVisible = true
+        
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl("https://chroniclingamerica.loc.gov/")
             .addConverterFactory(GsonConverterFactory.create())
@@ -67,12 +90,35 @@ class NewsListActivity : AppCompatActivity(), CheckNetwork {
                 lastPage = response.body()?.getLastPageNr()!!
 
                 updateRecyclerview(itemsResult)
+                updateButtons()
+                updateHeaders()
+                binding.waitingPlaceholder.isVisible = false
             }
 
             override fun onFailure(call: Call<SearchResults?>, t: Throwable) {
                 displayEmptyList("error")
+                binding.waitingPlaceholder.isVisible = false
             }
         })
+    }
+
+    private fun updateButtons () {
+        binding.previousButton.isEnabled = true
+        binding.nextButton.isEnabled = true
+
+        if (currentPage == 1) {
+            binding.previousButton.isEnabled = false
+
+        }
+
+        if (currentPage == lastPage) {
+            binding.nextButton.isEnabled = false
+        }
+
+        if (lastPage == 0) {
+            binding.previousButton.isEnabled = false
+            binding.nextButton.isEnabled = false
+        }
     }
 
     private fun updateRecyclerview (items: ArrayList<Items>) {
@@ -81,11 +127,18 @@ class NewsListActivity : AppCompatActivity(), CheckNetwork {
             itemsList.add(i)
         }
         itemsListAdapter?.notifyDataSetChanged()
+    }
 
+    private fun updateHeaders () {
         if (lastPage == 0) {
             displayEmptyList("empty")
+            binding.searchPage.text = ""
+        } else if (binding.searchEdit.text.toString() == ""){
+            binding.searchHeader.text = ""
+            binding.searchPage.text = "Page " + currentPage + " of " + lastPage
         } else {
-            binding.searchHeader.text = "Search results for: \"" + binding.searchEdit.text + "\""
+            binding.searchHeader.text = "Search results for: \"" + searchTxt + "\""
+            binding.searchPage.text = "Page " + currentPage + " of " + lastPage
         }
     }
 
