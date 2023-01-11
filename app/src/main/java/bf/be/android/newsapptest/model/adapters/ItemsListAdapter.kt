@@ -11,7 +11,7 @@ import bf.be.android.newsapptest.R
 import bf.be.android.newsapptest.model.apis.Items
 import bf.be.android.newsapptest.view.ArticleActivity
 
-class ItemsListAdapter(val itemsList: ArrayList<Items>, val passedContext: Context): RecyclerView.Adapter<ItemsListAdapter.ViewHolder>() {
+class ItemsListAdapter(val itemsList: ArrayList<Items>, private val passedContext: Context): RecyclerView.Adapter<ItemsListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsListAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.news_list, parent, false)
@@ -40,19 +40,19 @@ class ItemsListAdapter(val itemsList: ArrayList<Items>, val passedContext: Conte
 
             itemView.setOnClickListener {
                 val articleDetailsIntent = Intent(itemView.context, ArticleActivity::class.java)
-                articleDetailsIntent.putExtra("TITLE", itemsList[adapterPosition].title)
-                articleDetailsIntent.putExtra("DATE", formatDate(itemsList[adapterPosition].date.toString()))
-                articleDetailsIntent.putExtra("PLACE_OF_PUBLICATION", itemsList[adapterPosition].placeOfPublication)
-                articleDetailsIntent.putExtra("LANGUAGE", itemsList[adapterPosition].language)
-                articleDetailsIntent.putExtra("NOTE", itemsList[adapterPosition].note)
-                articleDetailsIntent.putExtra("SUBJECT", itemsList[adapterPosition].subject)
-                articleDetailsIntent.putExtra("FREQUENCY", itemsList[adapterPosition].frequency)
-                articleDetailsIntent.putExtra("PAGE", itemsList[adapterPosition].page)
-                articleDetailsIntent.putExtra("TYPE", itemsList[adapterPosition].type)
-                articleDetailsIntent.putExtra("EDITION_LABEL", itemsList[adapterPosition].editionLabel)
-                articleDetailsIntent.putExtra("PUBLISHER", itemsList[adapterPosition].publisher)
-                articleDetailsIntent.putExtra("URL", itemsList[adapterPosition].url)
-                articleDetailsIntent.putExtra("OCR_ENG", itemsList[adapterPosition].ocrEng)
+                articleDetailsIntent.putExtra("TITLE", itemsList[absoluteAdapterPosition].title)
+                articleDetailsIntent.putExtra("DATE", formatDate(itemsList[absoluteAdapterPosition].date.toString()))
+                articleDetailsIntent.putExtra("PLACE_OF_PUBLICATION", itemsList[absoluteAdapterPosition].placeOfPublication)
+                articleDetailsIntent.putExtra("LANGUAGE", itemsList[absoluteAdapterPosition].language)
+                articleDetailsIntent.putExtra("NOTE", itemsList[absoluteAdapterPosition].note)
+                articleDetailsIntent.putExtra("SUBJECT", itemsList[absoluteAdapterPosition].subject)
+                articleDetailsIntent.putExtra("FREQUENCY", itemsList[absoluteAdapterPosition].frequency)
+                articleDetailsIntent.putExtra("PAGE", itemsList[absoluteAdapterPosition].page)
+                articleDetailsIntent.putExtra("TYPE", itemsList[absoluteAdapterPosition].type)
+                articleDetailsIntent.putExtra("EDITION_LABEL", itemsList[absoluteAdapterPosition].editionLabel)
+                articleDetailsIntent.putExtra("PUBLISHER", itemsList[absoluteAdapterPosition].publisher)
+                articleDetailsIntent.putExtra("URL", itemsList[absoluteAdapterPosition].url)
+                articleDetailsIntent.putExtra("OCR_ENG", itemsList[absoluteAdapterPosition].ocrEng)
                 itemView.context.startActivity(articleDetailsIntent)
             }
         }

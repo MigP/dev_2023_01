@@ -36,10 +36,10 @@
         </activity>
         <activity
             android:name=".view.NewsListActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".view.ArticleActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
     </application>
 
 </manifest>

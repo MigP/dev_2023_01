@@ -1,6 +1,5 @@
 package bf.be.android.newsapptest.view
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -38,10 +37,10 @@ class NewsListActivity : AppCompatActivity(), CheckNetwork {
         super.onCreate(savedInstanceState)
         binding = ActivityNewsListBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setTitle("My News")
+        title = "My News"
 
         // Creation of the recyclerview
-        var itemsListAdapterLayoutManager: RecyclerView.LayoutManager? = null
+        val itemsListAdapterLayoutManager: RecyclerView.LayoutManager?
         itemsListAdapterLayoutManager = LinearLayoutManager(this)
         val recyclerView = binding.newsList
         recyclerView.layoutManager = itemsListAdapterLayoutManager
@@ -135,18 +134,18 @@ class NewsListActivity : AppCompatActivity(), CheckNetwork {
             binding.searchPage.text = ""
         } else if (binding.searchEdit.text.toString() == ""){
             binding.searchHeader.text = ""
-            binding.searchPage.text = "Page " + currentPage + " of " + lastPage
+            binding.searchPage.text = "Page $currentPage of $lastPage"
         } else {
-            binding.searchHeader.text = "Search results for: \"" + searchTxt + "\""
-            binding.searchPage.text = "Page " + currentPage + " of " + lastPage
+            binding.searchHeader.text = "Search results for: \"$searchTxt\""
+            binding.searchPage.text = "Page $currentPage of $lastPage"
         }
     }
 
     private fun displayEmptyList (message: String) {
-        if (message.equals("error")) {
+        if (message == "error") {
             if (isOnline(this)) binding.searchHeader.text = "An error has occurred" else binding.searchHeader.text = "There is no Internet connection"
-        } else if (message.equals("empty")) {
-            binding.searchHeader.text = "There are no results for: \"" + binding.searchEdit.text + "\""
+        } else if (message == "empty") {
+            binding.searchHeader.text = "There are no results for: \"${binding.searchEdit.text}\""
         }
     }
 }
