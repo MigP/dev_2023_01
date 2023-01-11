@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import androidx.core.view.isVisible
 import bf.be.android.newsapptest.databinding.ActivityArticleBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -49,26 +50,24 @@ class ArticleActivity : AppCompatActivity() {
         item_note.text = intent.getSerializableExtra("NOTE").toString()
 
         val item_ocr_engLink = binding.itemOcrLink
+        if (intent.getStringExtra("OCR_ENG") == null) item_ocr_engLink.isVisible = false
+        
         item_ocr_engLink.setOnClickListener {
-            if (intent.getStringExtra("OCR_ENG")!!.isNotEmpty()) {
-                val originalDetailsIntent = Intent(this, OriginalArticleActivity::class.java)
-                originalDetailsIntent.putExtra("TYPE", "ocr")
-                originalDetailsIntent.putExtra("OCR_ENG", intent.getStringExtra("OCR_ENG"))
-                startActivity(originalDetailsIntent)
-            }
+            val originalDetailsIntent = Intent(this, OriginalArticleActivity::class.java)
+            originalDetailsIntent.putExtra("TYPE", "ocr")
+            originalDetailsIntent.putExtra("OCR_ENG", intent.getStringExtra("OCR_ENG"))
+            startActivity(originalDetailsIntent)
         }
 
         val item_pdfLink = binding.itemPdfLink
         item_pdfLink.setOnClickListener {
-            if (intent.getStringExtra("URL")!!.isNotEmpty()) {
-                val originalDetailsIntent = Intent(this, OriginalArticleActivity::class.java)
-                originalDetailsIntent.putExtra("TYPE", "pdf")
-                originalDetailsIntent.putExtra(
-                    "URL",
-                    intent.getStringExtra("URL")?.replace(".json", ".pdf")
-                )
-                startActivity(originalDetailsIntent)
-            }
+            val originalDetailsIntent = Intent(this, OriginalArticleActivity::class.java)
+            originalDetailsIntent.putExtra("TYPE", "pdf")
+            originalDetailsIntent.putExtra(
+                "URL",
+                intent.getStringExtra("URL")?.replace(".json", ".pdf")
+            )
+            startActivity(originalDetailsIntent)
         }
     }
 }

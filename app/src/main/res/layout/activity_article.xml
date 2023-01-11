@@ -247,11 +247,12 @@
                 android:id="@+id/itemOcrLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="View the OCR of the original ►"
+                android:text="View the OCR in English ►"
                 android:textColor="#4CAF50"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:clickable="true"
+                android:paddingVertical="5dp"
                 app:layout_constraintStart_toStartOf="@+id/notes"
                 app:layout_constraintTop_toBottomOf="@+id/notes" />
 
@@ -264,6 +265,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:clickable="true"
+                android:paddingVertical="5dp"
                 app:layout_constraintStart_toStartOf="@+id/itemOcrLink"
                 app:layout_constraintTop_toBottomOf="@+id/itemOcrLink" />
 

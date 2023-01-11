@@ -18,13 +18,14 @@ class OriginalArticleActivity : AppCompatActivity() {
         if (intent.getStringExtra("TYPE").equals("ocr")) {
             binding.ocrScrollView.isVisible = true
             binding.articleOcr.text = intent.getStringExtra("OCR_ENG")
-            setTitle("My News - OCR of the original")
+            setTitle("My News - English OCR")
         } else if (intent.getStringExtra("TYPE").equals("pdf")) {
             binding.articlePdf.isVisible = true
 
             binding.articlePdf.webViewClient = WebViewClient()
             binding.articlePdf.settings.setSupportZoom(true)
-            binding.articlePdf.getSettings().setBuiltInZoomControls(true);
+            binding.articlePdf.settings.javaScriptEnabled = true
+            binding.articlePdf.getSettings().setBuiltInZoomControls(true)
 
             val url = intent.getStringExtra("URL")
             binding.articlePdf.loadUrl("https://docs.google.com/gview?embedded=true&url=$url")

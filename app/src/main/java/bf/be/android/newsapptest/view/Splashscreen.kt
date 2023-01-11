@@ -11,6 +11,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatDelegate
 import bf.be.android.newsapptest.R
 import bf.be.android.newsapptest.databinding.ActivitySplashscreenBinding
 
@@ -21,6 +22,8 @@ class Splashscreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashscreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         window.setFlags(
         WindowManager.LayoutParams.FLAG_FULLSCREEN,
