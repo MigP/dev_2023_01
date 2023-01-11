@@ -1,7 +1,9 @@
 package bf.be.android.newsapptest.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import bf.be.android.newsapptest.databinding.ActivityArticleBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -12,7 +14,7 @@ class ArticleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityArticleBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setTitle("My News")
+        setTitle("My News - Details")
 
         populateList()
 
@@ -45,10 +47,28 @@ class ArticleActivity : AppCompatActivity() {
         item_publisher.text = intent.getStringExtra("PUBLISHER")
         val item_note = binding.itemNotes
         item_note.text = intent.getSerializableExtra("NOTE").toString()
-        val item_ocr_eng = binding.itemOcr
-        item_ocr_eng.text = intent.getStringExtra("OCR_ENG")
 
-        //TODO Also get pdf (original scan) from json response on the item_url request
-        //TODO Instead of displaying the Ocr add a link to it like on the pdf
+        val item_ocr_engLink = binding.itemOcrLink
+        item_ocr_engLink.setOnClickListener {
+            if (intent.getStringExtra("OCR_ENG")!!.isNotEmpty()) {
+                val originalDetailsIntent = Intent(this, OriginalArticleActivity::class.java)
+                originalDetailsIntent.putExtra("TYPE", "ocr")
+                originalDetailsIntent.putExtra("OCR_ENG", intent.getStringExtra("OCR_ENG"))
+                startActivity(originalDetailsIntent)
+            }
+        }
+
+        val item_pdfLink = binding.itemPdfLink
+        item_pdfLink.setOnClickListener {
+            if (intent.getStringExtra("URL")!!.isNotEmpty()) {
+                val originalDetailsIntent = Intent(this, OriginalArticleActivity::class.java)
+                originalDetailsIntent.putExtra("TYPE", "pdf")
+                originalDetailsIntent.putExtra(
+                    "URL",
+                    intent.getStringExtra("URL")?.replace(".json", ".pdf")
+                )
+                startActivity(originalDetailsIntent)
+            }
+        }
     }
 }

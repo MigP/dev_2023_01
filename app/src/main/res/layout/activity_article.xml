@@ -243,25 +243,17 @@
                     android:text="text" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:paddingVertical="5dp">
-
-                <TextView
-                    android:id="@+id/ocr"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="English OCR: "
-                    android:textColor="#8BC34A" />
-
-                <TextView
-                    android:id="@+id/itemOcr"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="text" />
-            </LinearLayout>
+            <TextView
+                android:id="@+id/itemOcrLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View the OCR of the original ►"
+                android:textColor="#4CAF50"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:clickable="true"
+                app:layout_constraintStart_toStartOf="@+id/notes"
+                app:layout_constraintTop_toBottomOf="@+id/notes" />
 
             <TextView
                 android:id="@+id/itemPdfLink"
@@ -271,8 +263,9 @@
                 android:textColor="#4CAF50"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/itemOcr"
-                app:layout_constraintTop_toBottomOf="@+id/itemOcr" />
+                android:clickable="true"
+                app:layout_constraintStart_toStartOf="@+id/itemOcrLink"
+                app:layout_constraintTop_toBottomOf="@+id/itemOcrLink" />
 
         </LinearLayout>
     </ScrollView>

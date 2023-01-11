@@ -75,7 +75,7 @@ class NewsListActivity : AppCompatActivity(), CheckNetwork {
 
     private fun searchNews (searchTxt: String, currentPage: Int) {
         binding.waitingPlaceholder.isVisible = true
-        
+
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl("https://chroniclingamerica.loc.gov/")
             .addConverterFactory(GsonConverterFactory.create())
