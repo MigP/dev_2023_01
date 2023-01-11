@@ -24,6 +24,8 @@ class NewsListActivity : AppCompatActivity(), CheckNetwork {
     private lateinit var binding: ActivityNewsListBinding
 
     companion object {
+        var itemsList: ArrayList<Items> = arrayListOf()
+        var itemsListAdapter: RecyclerView.Adapter<ItemsListAdapter.ViewHolder>? = null
         var currentPage: Int = 1
         var lastPage: Int = 0
     }
@@ -34,8 +36,15 @@ class NewsListActivity : AppCompatActivity(), CheckNetwork {
         setContentView(binding.root)
         setTitle("My News")
 
-        val searchButton: ImageButton = binding.searchButton
+        // Creation of the recyclerview
+        var itemsListAdapterLayoutManager: RecyclerView.LayoutManager? = null
+        itemsListAdapterLayoutManager = LinearLayoutManager(this)
+        val recyclerView = binding.newsList
+        recyclerView.layoutManager = itemsListAdapterLayoutManager
+        itemsListAdapter = ItemsListAdapter(itemsList, this)
+        recyclerView.adapter = itemsListAdapter
 
+        val searchButton: ImageButton = binding.searchButton
         searchButton.setOnClickListener {
             //TODO Handle navigation buttons state depending on current page and total pages
             val searchTxt: String = binding.searchEdit.text.toString()
@@ -52,13 +61,12 @@ class NewsListActivity : AppCompatActivity(), CheckNetwork {
         val api = retrofit.create(ApiSearch::class.java)
         val call = api.getResults(searchTxt, currentPage)
         call.enqueue(object : Callback<SearchResults?> {
-            var itemsList: ArrayList<Items> = arrayListOf()
 
             override fun onResponse(call: Call<SearchResults?>, response: Response<SearchResults?>) {
-                itemsList = response.body()?.getItemsList()!!
+                val itemsResult = response.body()?.getItemsList()!!
                 lastPage = response.body()?.getLastPageNr()!!
 
-                createRecyclerview(itemsList)
+                updateRecyclerview(itemsResult)
             }
 
             override fun onFailure(call: Call<SearchResults?>, t: Throwable) {
@@ -67,14 +75,12 @@ class NewsListActivity : AppCompatActivity(), CheckNetwork {
         })
     }
 
-    private fun createRecyclerview (items: ArrayList<Items>) {
-        var itemsListAdapterLayoutManager: RecyclerView.LayoutManager? = null
-        var itemsListAdapter: RecyclerView.Adapter<ItemsListAdapter.ViewHolder>? = null
-        itemsListAdapterLayoutManager = LinearLayoutManager(this)
-        val recyclerView = binding.newsList
-        recyclerView.layoutManager = itemsListAdapterLayoutManager
-        itemsListAdapter = ItemsListAdapter(items, this)
-        recyclerView.adapter = itemsListAdapter
+    private fun updateRecyclerview (items: ArrayList<Items>) {
+        itemsList.clear()
+        for (i in items) {
+            itemsList.add(i)
+        }
+        itemsListAdapter?.notifyDataSetChanged()
 
         if (lastPage == 0) {
             displayEmptyList("empty")
