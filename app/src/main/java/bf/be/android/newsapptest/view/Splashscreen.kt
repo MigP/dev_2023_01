@@ -54,13 +54,23 @@ class Splashscreen : AppCompatActivity() {
 
         // Welcome text animation
         val splashWelcome: TextView = binding.welcome
-        val welcomeBlowUp: ValueAnimator = ValueAnimator.ofFloat(0f, 65f)
+
+        val welcomeBlowUp: ValueAnimator = ValueAnimator.ofFloat(0f, 85f)
         welcomeBlowUp.addUpdateListener { valueAnimator ->
             val animatedValue = valueAnimator.animatedValue as Float
             splashWelcome.textSize = animatedValue
         }
-        welcomeBlowUp.duration = 1000
-        welcomeBlowUp.startDelay = 0
+        welcomeBlowUp.duration = 550
+        welcomeBlowUp.startDelay = 800
         welcomeBlowUp.start()
+
+        val welcomeShrinkDown: ValueAnimator = ValueAnimator.ofFloat(85f, 65f)
+        welcomeShrinkDown.addUpdateListener { valueAnimator ->
+            val animatedValue = valueAnimator.animatedValue as Float
+            splashWelcome.textSize = animatedValue
+        }
+        welcomeShrinkDown.duration = 150
+        welcomeShrinkDown.startDelay = 1350
+        welcomeShrinkDown.start()
     }
 }
