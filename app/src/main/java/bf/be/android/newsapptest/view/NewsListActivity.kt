@@ -89,13 +89,15 @@ class NewsListActivity : AppCompatActivity(), CheckNetwork {
                 lastPage = response.body()?.getLastPageNr()!!
 
                 updateRecyclerview(itemsResult)
-                updateButtons()
                 updateHeaders()
+                updateButtons()
                 binding.waitingPlaceholder.isVisible = false
             }
 
             override fun onFailure(call: Call<SearchResults?>, t: Throwable) {
                 displayEmptyList("error")
+                itemsList.clear()
+                itemsListAdapter?.notifyDataSetChanged()
                 binding.waitingPlaceholder.isVisible = false
             }
         })

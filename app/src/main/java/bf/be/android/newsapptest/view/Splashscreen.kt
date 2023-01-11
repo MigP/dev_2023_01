@@ -26,8 +26,8 @@ class Splashscreen : AppCompatActivity() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         window.setFlags(
-        WindowManager.LayoutParams.FLAG_FULLSCREEN,
-        WindowManager.LayoutParams.FLAG_FULLSCREEN
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
         Handler(Looper.getMainLooper()).postDelayed({
@@ -40,19 +40,19 @@ class Splashscreen : AppCompatActivity() {
     }
 
     private fun splashAnimations() {
-        // Splash globe animation
+        // Globe animation
         val splashGlobe: ImageView = binding.globe
         val globeAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.globe_slide)
         globeAnimation.startOffset = 0
         splashGlobe.startAnimation(globeAnimation)
 
-        // Splash globe text animation
+        // Globe text animation
         val splashGlobeText: TextView = binding.globeText
         val globeTextAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.text_slide)
         globeTextAnimation.startOffset = 0
         splashGlobeText.startAnimation(globeTextAnimation)
 
-        // Splash welcome animation
+        // Welcome text animation
         val splashWelcome: TextView = binding.welcome
         val welcomeBlowUp: ValueAnimator = ValueAnimator.ofFloat(0f, 65f)
         welcomeBlowUp.addUpdateListener { valueAnimator ->
