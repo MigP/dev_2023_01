@@ -34,7 +34,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Title: "
-                    android:textColor="#8BC34A" />
+                    android:textColor="#00B3A1" />
 
                 <TextView
                     android:id="@+id/itemTitle"
@@ -54,7 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Date of publication: "
-                    android:textColor="#8BC34A" />
+                    android:textColor="#00B3A1" />
 
                 <TextView
                     android:id="@+id/itemDate"
@@ -74,7 +74,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Location: "
-                    android:textColor="#8BC34A" />
+                    android:textColor="#00B3A1" />
 
                 <TextView
                     android:id="@+id/itemPlace"
@@ -94,7 +94,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Subject: "
-                    android:textColor="#8BC34A" />
+                    android:textColor="#00B3A1" />
 
                 <TextView
                     android:id="@+id/itemSubject"
@@ -114,7 +114,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Language: "
-                    android:textColor="#8BC34A" />
+                    android:textColor="#00B3A1" />
 
                 <TextView
                     android:id="@+id/itemLanguage"
@@ -134,7 +134,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Type: "
-                    android:textColor="#8BC34A" />
+                    android:textColor="#00B3A1" />
 
                 <TextView
                     android:id="@+id/itemType"
@@ -154,7 +154,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Page: "
-                    android:textColor="#8BC34A" />
+                    android:textColor="#00B3A1" />
 
                 <TextView
                     android:id="@+id/itemPage"
@@ -174,7 +174,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Frequency: "
-                    android:textColor="#8BC34A" />
+                    android:textColor="#00B3A1" />
 
                 <TextView
                     android:id="@+id/itemFrequency"
@@ -194,7 +194,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Edition label: "
-                    android:textColor="#8BC34A" />
+                    android:textColor="#00B3A1" />
 
                 <TextView
                     android:id="@+id/itemLabel"
@@ -214,7 +214,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Publisher: "
-                    android:textColor="#8BC34A" />
+                    android:textColor="#00B3A1" />
 
                 <TextView
                     android:id="@+id/itemPublisher"
@@ -234,7 +234,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Notes: "
-                    android:textColor="#8BC34A" />
+                    android:textColor="#00B3A1" />
 
                 <TextView
                     android:id="@+id/itemNotes"
@@ -248,7 +248,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="View the OCR in English ►"
-                android:textColor="#4CAF50"
+                android:textColor="#019183"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:clickable="true"
@@ -261,7 +261,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="View a scan of the original ►"
-                android:textColor="#4CAF50"
+                android:textColor="#019183"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:clickable="true"
