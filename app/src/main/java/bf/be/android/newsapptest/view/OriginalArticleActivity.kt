@@ -15,6 +15,7 @@ class OriginalArticleActivity : AppCompatActivity() {
         binding = ActivityOriginalArticleBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Changes are made depending on which type was passed through intent (ocr or pdf)
         if (intent.getStringExtra("TYPE").equals("ocr")) {
             binding.ocrScrollView.isVisible = true
             binding.articleOcr.text = intent.getStringExtra("OCR_ENG")
@@ -31,6 +32,7 @@ class OriginalArticleActivity : AppCompatActivity() {
             title = "My News - Scan of the original"
         }
 
+        // Sets up click listeners for the back button
         val backButton: FloatingActionButton = binding.backFloatingActionButton
         backButton.setOnClickListener {
             finish()

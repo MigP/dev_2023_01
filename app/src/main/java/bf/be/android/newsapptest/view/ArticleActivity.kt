@@ -16,8 +16,10 @@ class ArticleActivity : AppCompatActivity() {
         setContentView(binding.root)
         title = "My News - Details"
 
+        // Fills in the details on the list
         populateList()
 
+        // Sets up click listeners for the back button
         val backButton: FloatingActionButton = binding.backFloatingActionButton
         backButton.setOnClickListener {
             finish()
@@ -25,6 +27,7 @@ class ArticleActivity : AppCompatActivity() {
     }
 
     private fun populateList () {
+        // Fills in the details on the list with the values carried in through intent
         val itemTitle = binding.itemTitle
         itemTitle.text = intent.getStringExtra("TITLE")
         val itemDate = binding.itemDate
@@ -51,6 +54,7 @@ class ArticleActivity : AppCompatActivity() {
         val itemOcrEngLink = binding.itemOcrLink
         if (intent.getStringExtra("OCR_ENG") == null) itemOcrEngLink.isVisible = false
 
+        // Clicking on the OCR link will start a new activity which will display the OCR in English when available
         itemOcrEngLink.setOnClickListener {
             val originalDetailsIntent = Intent(this, OriginalArticleActivity::class.java)
             originalDetailsIntent.putExtra("TYPE", "ocr")
@@ -58,6 +62,7 @@ class ArticleActivity : AppCompatActivity() {
             startActivity(originalDetailsIntent)
         }
 
+        // Clicking on the PDF link will start a new activity which will display the scan where the original article is found
         val itemPdfLink = binding.itemPdfLink
         itemPdfLink.setOnClickListener {
             val originalDetailsIntent = Intent(this, OriginalArticleActivity::class.java)

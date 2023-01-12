@@ -47,11 +47,13 @@ class NewsListActivity : AppCompatActivity(), CheckNetwork {
         itemsListAdapter = ItemsListAdapter(itemsList, this)
         recyclerView.adapter = itemsListAdapter
 
+        // Loads waiting animated gif into its placeholder
         Glide.with(this).load(R.drawable.waiting).into(binding.waitingPlaceholder)
 
         // Displays initial list
         searchNews("", currentPage)
 
+        // Sets up click listeners for the existing buttons
         val searchButton: ImageButton = binding.searchButton
         searchButton.setOnClickListener {
             searchTxt = binding.searchEdit.text.toString()
@@ -75,6 +77,7 @@ class NewsListActivity : AppCompatActivity(), CheckNetwork {
     private fun searchNews (searchTxt: String, currentPage: Int) {
         binding.waitingPlaceholder.isVisible = true
 
+        // API call
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl("https://chroniclingamerica.loc.gov/")
             .addConverterFactory(GsonConverterFactory.create())
@@ -104,18 +107,12 @@ class NewsListActivity : AppCompatActivity(), CheckNetwork {
     }
 
     private fun updateButtons () {
+        // Handles the state of the navigation buttons for the list
         binding.previousButton.isEnabled = true
         binding.nextButton.isEnabled = true
 
-        if (currentPage == 1) {
-            binding.previousButton.isEnabled = false
-
-        }
-
-        if (currentPage == lastPage) {
-            binding.nextButton.isEnabled = false
-        }
-
+        if (currentPage == 1) binding.previousButton.isEnabled = false
+        if (currentPage == lastPage) binding.nextButton.isEnabled = false
         if (lastPage == 0) {
             binding.previousButton.isEnabled = false
             binding.nextButton.isEnabled = false
@@ -123,6 +120,7 @@ class NewsListActivity : AppCompatActivity(), CheckNetwork {
     }
 
     private fun updateRecyclerview (items: ArrayList<Items>) {
+        // Updates the list whenever needed
         itemsList.clear()
         for (i in items) {
             itemsList.add(i)
@@ -131,6 +129,7 @@ class NewsListActivity : AppCompatActivity(), CheckNetwork {
     }
 
     private fun updateHeaders () {
+        // Updates the list headers with the text being searched, any errors, and current page
         if (lastPage == 0) {
             displayEmptyList("empty")
             binding.searchPage.text = ""
@@ -144,6 +143,7 @@ class NewsListActivity : AppCompatActivity(), CheckNetwork {
     }
 
     private fun displayEmptyList (message: String) {
+        // Possible error messages
         if (message == "error") {
             if (isOnline(this)) binding.searchHeader.text = "An error has occurred" else binding.searchHeader.text = "There is no Internet connection"
         } else if (message == "empty") {

@@ -23,19 +23,23 @@ class Splashscreen : AppCompatActivity() {
         binding = ActivitySplashscreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Makes sure the app colours are preserved during dark mode
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
+        // Sets the splashscreen window to full screen
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
+        // Heads to new activity after 3 secondsfter 3 seconds
         Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this, NewsListActivity::class.java)
             startActivity(intent)
             finish()
             }, 3000)
 
+        // Displays splashscreen animations
         splashAnimations()
     }
 
