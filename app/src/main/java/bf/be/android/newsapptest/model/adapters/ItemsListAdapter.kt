@@ -23,6 +23,7 @@ class ItemsListAdapter(val itemsList: ArrayList<Items>, private val passedContex
     }
 
     override fun onBindViewHolder(holder: ItemsListAdapter.ViewHolder, position: Int) {
+        // Fields displayed on the list for each article
         holder.articleTitle.text = itemsList[position].title
         holder.articleDate.text = formatDate(itemsList[position].date.toString())
         holder.publicationLocation.text = itemsList[position].placeOfPublication
@@ -39,6 +40,7 @@ class ItemsListAdapter(val itemsList: ArrayList<Items>, private val passedContex
             publicationLocation = itemView.findViewById(R.id.publication_location)
 
             itemView.setOnClickListener {
+                // When an item is clicked, a new activity is started with this data in its intent
                 val articleDetailsIntent = Intent(itemView.context, ArticleActivity::class.java)
                 articleDetailsIntent.putExtra("TITLE", itemsList[absoluteAdapterPosition].title)
                 articleDetailsIntent.putExtra("DATE", formatDate(itemsList[absoluteAdapterPosition].date.toString()))
@@ -59,6 +61,7 @@ class ItemsListAdapter(val itemsList: ArrayList<Items>, private val passedContex
     }
 
     private fun formatDate(date: String): String {
+        // Changes the date into a more readable format
         return date.slice(6..7) + "/" + date.slice(4..5) + "/" + date.slice(0..3)
     }
 }
