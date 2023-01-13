@@ -15,7 +15,7 @@ class ItemsListAdapter(val itemsList: ArrayList<Items>, private val passedContex
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsListAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.news_list, parent, false)
-        return ViewHolder(v, passedContext)
+        return ViewHolder(v)
     }
 
     override fun getItemCount(): Int {
@@ -29,7 +29,7 @@ class ItemsListAdapter(val itemsList: ArrayList<Items>, private val passedContex
         holder.publicationLocation.text = itemsList[position].placeOfPublication
     }
 
-    inner class ViewHolder(itemView: View, passedContext: Context): RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         var articleTitle: TextView
         var articleDate: TextView
         var publicationLocation: TextView

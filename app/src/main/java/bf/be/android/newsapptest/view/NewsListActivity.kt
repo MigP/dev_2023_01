@@ -145,7 +145,7 @@ class NewsListActivity : AppCompatActivity(), CheckNetwork {
     private fun displayEmptyList (message: String) {
         // Possible error messages
         if (message == "error") {
-            if (isOnline(this)) binding.searchHeader.text = "An error has occurred" else binding.searchHeader.text = "There is no Internet connection"
+            binding.searchHeader.text = if (isOnline(this)) "An error has occurred" else "There is no Internet connection"
         } else if (message == "empty") {
             binding.searchHeader.text = "There are no results for: \"${binding.searchEdit.text}\""
         }
